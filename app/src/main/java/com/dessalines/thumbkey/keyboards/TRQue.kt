@@ -105,6 +105,28 @@ val SPACEBAR_ALL_MORE_SYMBOLS = SPACEBAR_ALL_SYMBOLS.copy(
         ),
     )
 
+val SPACEBAR_ALL_MORE_SYMBOLS_SHIFTED =
+    SPACEBAR_ALL_MORE_SYMBOLS.copy(
+            swipes =
+                mapOf(
+                    SwipeDirection.TOP to
+                        KeyC(
+                            display = KeyDisplay.TextDisplay(";"),
+                            action = KeyAction.CommitText(";"),
+                        ),
+                    SwipeDirection.BOTTOM to
+                        KeyC(
+                            display = KeyDisplay.TextDisplay(":"),
+                            action = KeyAction.CommitText(":"),
+                        ),
+                    SwipeDirection.LEFT to
+                        KeyC(
+                            display = KeyDisplay.TextDisplay(":"),
+                            action = KeyAction.CommitText(":"),
+                        ),
+                )
+        )
+
 val TR_QUE_MAIN =
     KeyboardC(
         listOf(
@@ -254,18 +276,6 @@ val TR_QUE_MAIN =
                                     display = KeyDisplay.TextDisplay("m"),
                                     action = KeyAction.CommitText("m"),
                                 ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("@"),
-                                    action = KeyAction.CommitText("@"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("₸"),
-                                    action = KeyAction.CommitText("₸"),
-                                    color = ColorVariant.MUTED,
-                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("$"),
@@ -282,6 +292,12 @@ val TR_QUE_MAIN =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("&"),
                                     action = KeyAction.CommitText("&"),
+                                    color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.BOTTOM_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("["),
+                                    action = KeyAction.CommitText("["),
                                     color = ColorVariant.MUTED,
                                 ),
                         ),
@@ -372,8 +388,20 @@ val TR_QUE_MAIN =
                                 ),
                             SwipeDirection.RIGHT to
                                 KeyC(
-                                    display = KeyDisplay.IconDisplay(Icons.AutoMirrored.Outlined.KeyboardTab),
-                                    action = KeyAction.CommitText("\t"),
+                                    display = KeyDisplay.TextDisplay(")"),
+                                    action = KeyAction.CommitText(")"),
+                                    color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.TOP_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("}"),
+                                    action = KeyAction.CommitText("}"),
+                                    color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.BOTTOM_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("]"),
+                                    action = KeyAction.CommitText("]"),
                                     color = ColorVariant.MUTED,
                                 ),
                         ),
@@ -402,22 +430,10 @@ val TR_QUE_MAIN =
                                     display = KeyDisplay.TextDisplay("c"),
                                     action = KeyAction.CommitText("c"),
                                 ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("{"),
-                                    action = KeyAction.CommitText("{"),
-                                    color = ColorVariant.MUTED,
-                                ),
                             SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("<"),
                                     action = KeyAction.CommitText("<"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("["),
-                                    action = KeyAction.CommitText("["),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM_RIGHT to
@@ -488,28 +504,16 @@ val TR_QUE_MAIN =
                                     action = KeyAction.CommitText(";"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.BOTTOM to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay(":"),
-                                    action = KeyAction.CommitText(":"),
-                                    color = ColorVariant.MUTED,
-                                ),
                             SwipeDirection.RIGHT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay(">"),
                                     action = KeyAction.CommitText(">"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.TOP_RIGHT to
+                            SwipeDirection.LEFT to
                                 KeyC(
-                                    display = KeyDisplay.TextDisplay("}"),
-                                    action = KeyAction.CommitText("}"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_RIGHT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("]"),
-                                    action = KeyAction.CommitText("]"),
+                                    display = KeyDisplay.TextDisplay("@"),
+                                    action = KeyAction.CommitText("@"),
                                     color = ColorVariant.MUTED,
                                 ),
                         ),
@@ -674,12 +678,6 @@ val TR_QUE_SHIFTED =
                                     action = KeyAction.CommitText("#"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("£"),
-                                    action = KeyAction.CommitText("₸"),
-                                    color = ColorVariant.MUTED,
-                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("€"),
@@ -688,8 +686,8 @@ val TR_QUE_SHIFTED =
                                 ),
                             SwipeDirection.TOP_RIGHT to
                                 KeyC(
-                                    display = KeyDisplay.TextDisplay("₺"),
-                                    action = KeyAction.CommitText("₺"),
+                                    display = KeyDisplay.TextDisplay("₸"),
+                                    action = KeyAction.CommitText("₸"),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM to
@@ -698,10 +696,22 @@ val TR_QUE_SHIFTED =
                                     action = KeyAction.CommitText("&"),
                                     color = ColorVariant.MUTED,
                                 ),
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("{"),
+                                    action = KeyAction.CommitText("{"),
+                                    color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("<"),
+                                    action = KeyAction.CommitText("<"),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.BOTTOM_LEFT to
                                 KeyC(
-                                    display = KeyDisplay.TextDisplay("|"),
-                                    action = KeyAction.CommitText("|"),
+                                    display = KeyDisplay.TextDisplay("["),
+                                    action = KeyAction.CommitText("["),
                                     color = ColorVariant.MUTED,
                                 ),
                         ),
@@ -799,7 +809,7 @@ val TR_QUE_SHIFTED =
                                 ),
                         ),
                 ),
-                SPACEBAR_ALL_MORE_SYMBOLS,
+                SPACEBAR_ALL_MORE_SYMBOLS_SHIFTED,
             ),
             listOf(
                 BACKSPACE_KEY_ITEM,
@@ -822,24 +832,6 @@ val TR_QUE_SHIFTED =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("C"),
                                     action = KeyAction.CommitText("C"),
-                                ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("{"),
-                                    action = KeyAction.CommitText("{"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("<"),
-                                    action = KeyAction.CommitText("<"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("["),
-                                    action = KeyAction.CommitText("["),
-                                    color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM_RIGHT to
                                 KeyC(
@@ -912,12 +904,6 @@ val TR_QUE_SHIFTED =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay(";"),
                                     action = KeyAction.CommitText(";"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay(":"),
-                                    action = KeyAction.CommitText(":"),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.RIGHT to
@@ -1039,11 +1025,6 @@ val TR_QUE_NUMERIC =
                                     action = KeyAction.CommitText(")"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("£"),
-                                    action = KeyAction.CommitText("£"),
-                                ),
                             SwipeDirection.TOP_LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("="),
@@ -1081,6 +1062,12 @@ val TR_QUE_NUMERIC =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("%"),
                                     action = KeyAction.CommitText("%"),
+                                ),
+                            SwipeDirection.TOP to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("$"),
+                                    action = KeyAction.CommitText("$"),
+                                    color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM_RIGHT to
                                 KeyC(
@@ -1154,11 +1141,6 @@ val TR_QUE_NUMERIC =
                                     display = KeyDisplay.TextDisplay("~"),
                                     action = KeyAction.CommitText("~"),
                                 ),
-                            SwipeDirection.BOTTOM_RIGHT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay(":"),
-                                    action = KeyAction.CommitText(":"),
-                                ),
                             SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("<"),
@@ -1220,11 +1202,6 @@ val TR_QUE_NUMERIC =
                                     display = KeyDisplay.TextDisplay("]"),
                                     action = KeyAction.CommitText("]"),
                                     color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay(";"),
-                                    action = KeyAction.CommitText(";"),
                                 ),
                             SwipeDirection.LEFT to
                                 KeyC(
