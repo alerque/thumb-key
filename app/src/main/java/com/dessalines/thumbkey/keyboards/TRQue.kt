@@ -1,7 +1,9 @@
 package com.dessalines.thumbkey.keyboards
 
+import android.view.KeyEvent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.KeyboardTab
+import androidx.compose.material.icons.automirrored.outlined.KeyboardBackspace
 import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material.icons.outlined.ArrowDropUp
 import androidx.compose.material.icons.outlined.Copyright
@@ -16,10 +18,37 @@ import com.dessalines.thumbkey.utils.KeyboardC
 import com.dessalines.thumbkey.utils.KeyboardDefinition
 import com.dessalines.thumbkey.utils.KeyboardDefinitionModes
 import com.dessalines.thumbkey.utils.KeyboardDefinitionSettings
+import com.dessalines.thumbkey.utils.SlideType
 import com.dessalines.thumbkey.utils.SwipeDirection
 import com.dessalines.thumbkey.utils.SwipeNWay
 import com.dessalines.thumbkey.utils.autoCapitalizeI
 import com.dessalines.thumbkey.utils.autoCapitalizeIApostrophe
+
+val RETURN_KEY_FOO = RETURN_KEY_ITEM.copy(
+        swipeType = SwipeNWay.FOUR_WAY_CROSS,
+        swipes =
+            mapOf(
+                SwipeDirection.LEFT to
+                    KeyC(
+                        display = KeyDisplay.IconDisplay(Icons.AutoMirrored.Outlined.KeyboardBackspace),
+                        action =
+                            KeyAction.SendEvent(
+                                KeyEvent(
+                                    KeyEvent.ACTION_DOWN,
+                                    KeyEvent
+                                        .KEYCODE_DEL,
+                                ),
+                            ),
+                        color = ColorVariant.MUTED,
+                    ),
+                SwipeDirection.TOP to
+                    KeyC(
+                        display = KeyDisplay.IconDisplay(Icons.AutoMirrored.Outlined.KeyboardTab),
+                        action = KeyAction.CommitText("\t"),
+                        color = ColorVariant.MUTED,
+                    ),
+            )
+    )
 
 val SPACEBAR_ALL_MORE_SYMBOLS = SPACEBAR_ALL_SYMBOLS.copy(
     swipeType = SwipeNWay.EIGHT_WAY,
@@ -485,7 +514,7 @@ val TR_QUE_MAIN =
                                 ),
                         ),
                 ),
-                RETURN_KEY_ITEM,
+                RETURN_KEY_FOO,
             ),
         ),
     )
@@ -911,7 +940,7 @@ val TR_QUE_SHIFTED =
                                 ),
                         ),
                 ),
-                RETURN_KEY_ITEM,
+                RETURN_KEY_FOO,
             ),
         ),
     )
@@ -1204,7 +1233,7 @@ val TR_QUE_NUMERIC =
                                 ),
                         ),
                 ),
-                RETURN_KEY_ITEM,
+                RETURN_KEY_FOO,
             ),
         ),
     )
