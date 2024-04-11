@@ -280,6 +280,12 @@ val TR_QUE_MAIN =
                                     action = KeyAction.CommitText("+"),
                                     color = ColorVariant.MUTED,
                                 ),
+                            SwipeDirection.RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("÷"),
+                                    action = KeyAction.CommitText("÷"),
+                                    color = ColorVariant.MUTED,
+                                ),
                         ),
                 ),
                 NUMERIC_KEY_ITEM,
@@ -881,6 +887,7 @@ val TR_QUE_NUMERIC =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("`"),
                                     action = KeyAction.CommitText("`"),
+                                    color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.TOP to
                                 KeyC(
@@ -948,6 +955,12 @@ val TR_QUE_NUMERIC =
                                     action = KeyAction.CommitText("+"),
                                     color = ColorVariant.MUTED,
                                 ),
+                            SwipeDirection.RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("÷"),
+                                    action = KeyAction.CommitText("÷"),
+                                    color = ColorVariant.MUTED,
+                                ),
                         ),
                 ),
                 ABC_KEY_ITEM,
@@ -968,12 +981,6 @@ val TR_QUE_NUMERIC =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("{"),
                                     action = KeyAction.CommitText("{"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("%"),
-                                    action = KeyAction.CommitText("%"),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.TOP to
