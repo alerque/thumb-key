@@ -36,7 +36,7 @@ val TR_QUE_MAIN =
                         ),
                     swipes =
                         mapOf(
-                            SwipeDirection.BOTTOM_RIGHT to
+                            SwipeDirection.BOTTOM to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("ş"),
                                     action = KeyAction.CommitText("ş"),
@@ -126,7 +126,6 @@ val TR_QUE_MAIN =
                             size = FontSizeVariant.LARGE,
                             color = ColorVariant.PRIMARY,
                         ),
-                    swipeType = SwipeNWay.FOUR_WAY_DIAGONAL,
                     swipes =
                         mapOf(
                             SwipeDirection.BOTTOM to
@@ -269,7 +268,6 @@ val TR_QUE_MAIN =
                             size = FontSizeVariant.LARGE,
                             color = ColorVariant.PRIMARY,
                         ),
-                    swipeType = SwipeNWay.FOUR_WAY_CROSS,
                     swipes =
                         mapOf(
                             SwipeDirection.LEFT to
@@ -311,6 +309,11 @@ val TR_QUE_MAIN =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("ç"),
+                                    action = KeyAction.CommitText("ç"),
+                                ),
                             SwipeDirection.TOP_RIGHT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("c"),
@@ -352,6 +355,11 @@ val TR_QUE_MAIN =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("ı"),
+                                    action = KeyAction.CommitText("ı"),
+                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("f"),
@@ -545,7 +553,6 @@ val TR_QUE_SHIFTED =
                             size = FontSizeVariant.LARGE,
                             color = ColorVariant.PRIMARY,
                         ),
-                    swipeType = SwipeNWay.FOUR_WAY_DIAGONAL,
                     swipes =
                         mapOf(
                             SwipeDirection.BOTTOM to
@@ -688,7 +695,6 @@ val TR_QUE_SHIFTED =
                             size = FontSizeVariant.LARGE,
                             color = ColorVariant.PRIMARY,
                         ),
-                    swipeType = SwipeNWay.FOUR_WAY_CROSS,
                     swipes =
                         mapOf(
                             SwipeDirection.LEFT to
@@ -731,6 +737,11 @@ val TR_QUE_SHIFTED =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("Ç"),
+                                    action = KeyAction.CommitText("Ç"),
+                                ),
                             SwipeDirection.TOP_RIGHT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("C"),
@@ -765,13 +776,18 @@ val TR_QUE_SHIFTED =
                 KeyItemC(
                     center =
                         KeyC(
-                            display = KeyDisplay.TextDisplay("I"),
-                            action = KeyAction.CommitText("I"),
+                            display = KeyDisplay.TextDisplay("İ"),
+                            action = KeyAction.CommitText("İ"),
                             size = FontSizeVariant.LARGE,
                             color = ColorVariant.PRIMARY,
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("I"),
+                                    action = KeyAction.CommitText("I"),
+                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("F"),
