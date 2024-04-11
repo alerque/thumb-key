@@ -21,6 +21,61 @@ import com.dessalines.thumbkey.utils.SwipeNWay
 import com.dessalines.thumbkey.utils.autoCapitalizeI
 import com.dessalines.thumbkey.utils.autoCapitalizeIApostrophe
 
+val SPACEBAR_ALL_MORE_SYMBOLS = SPACEBAR_ALL_SYMBOLS.copy(
+    swipeType = SwipeNWay.EIGHT_WAY,
+    swipes =
+        mapOf(
+            SwipeDirection.TOP_LEFT to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("“"),
+                    action = KeyAction.CommitText("“"),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.LEFT to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("\""),
+                    action = KeyAction.CommitText("\""),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.RIGHT to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("'"),
+                    action = KeyAction.CommitText("'"),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.TOP_RIGHT to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("‘"),
+                    action = KeyAction.CommitText("‘"),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.TOP to
+                KeyC(
+                    display = KeyDisplay.TextDisplay(","),
+                    action = KeyAction.CommitText(","),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.BOTTOM_LEFT to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("”"),
+                    action = KeyAction.CommitText("”"),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.BOTTOM to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("."),
+                    action = KeyAction.CommitText("."),
+                    color = ColorVariant.MUTED,
+                ),
+            SwipeDirection.BOTTOM_RIGHT to
+                KeyC(
+                    display = KeyDisplay.TextDisplay("’"),
+                    action = KeyAction.CommitText("’"),
+                    color = ColorVariant.MUTED,
+                ),
+        ),
+    )
+
 val TR_QUE_MAIN =
     KeyboardC(
         listOf(
@@ -154,7 +209,7 @@ val TR_QUE_MAIN =
                 NUMERIC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_SYMBOLS,
+                SPACEBAR_ALL_DIRECTIONS,
                 KeyItemC(
                     center =
                         KeyC(
@@ -294,10 +349,10 @@ val TR_QUE_MAIN =
                                 ),
                         ),
                 ),
-                BACKSPACE_KEY_ITEM,
+                SPACEBAR_ALL_MORE_SYMBOLS,
             ),
             listOf(
-                SPACEBAR_ALL_DIRECTIONS,
+                BACKSPACE_KEY_ITEM,
                 KeyItemC(
                     center =
                         KeyC(
@@ -568,23 +623,7 @@ val TR_QUE_SHIFTED =
                 NUMERIC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_SYMBOLS.copy(
-                    swipes =
-                        mapOf(
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("\""),
-                                    action = KeyAction.CommitText("\""),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay(","),
-                                    action = KeyAction.CommitText(","),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
-                ),
+                SPACEBAR_ALL_DIRECTIONS,
                 KeyItemC(
                     center =
                         KeyC(
@@ -731,10 +770,10 @@ val TR_QUE_SHIFTED =
                                 ),
                         ),
                 ),
-                BACKSPACE_KEY_ITEM,
+                SPACEBAR_ALL_MORE_SYMBOLS,
             ),
             listOf(
-                SPACEBAR_ALL_DIRECTIONS,
+                BACKSPACE_KEY_ITEM,
                 KeyItemC(
                     center =
                         KeyC(
@@ -993,7 +1032,7 @@ val TR_QUE_NUMERIC =
                 ABC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_SYMBOLS,
+                SPACEBAR_ALL_DIRECTIONS,
                 KeyItemC(
                     center =
                         KeyC(
@@ -1067,10 +1106,10 @@ val TR_QUE_NUMERIC =
                                 ),
                         ),
                 ),
-                BACKSPACE_KEY_ITEM,
+                SPACEBAR_ALL_MORE_SYMBOLS,
             ),
             listOf(
-                SPACEBAR_ALL_DIRECTIONS,
+                BACKSPACE_KEY_ITEM,
                 KeyItemC(
                     center =
                         KeyC(
