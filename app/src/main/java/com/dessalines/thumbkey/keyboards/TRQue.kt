@@ -568,7 +568,20 @@ val TR_QUE_SHIFTED =
                 NUMERIC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_SYMBOLS,
+                SPACEBAR_ALL_SYMBOLS.copy(
+                SwipeDirection.LEFT to
+                    KeyC(
+                        display = KeyDisplay.TextDisplay("\""),
+                        action = KeyAction.CommitText("\""),
+                        color = ColorVariant.MUTED,
+                    ),
+                    SwipeDirection.BOTTOM_LEFT to
+                        KeyC(
+                            display = KeyDisplay.TextDisplay(","),
+                            action = KeyAction.CommitText(","),
+                            color = ColorVariant.MUTED,
+                        ),
+                ),
                 KeyItemC(
                     center =
                         KeyC(
@@ -931,11 +944,6 @@ val TR_QUE_NUMERIC =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("/"),
                                     action = KeyAction.CommitText("/"),
-                                ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("+"),
-                                    action = KeyAction.CommitText("+"),
                                 ),
                         ),
                 ),
