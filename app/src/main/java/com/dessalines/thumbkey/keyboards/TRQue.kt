@@ -536,6 +536,12 @@ val TR_QUE_MAIN =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("°"),
+                                    action = KeyAction.CommitText("°"),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.TOP_LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("d"),
@@ -882,12 +888,6 @@ val TR_QUE_NUMERIC =
                                     action = KeyAction.CommitText("~"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("("),
-                                    action = KeyAction.CommitText("("),
-                                    color = ColorVariant.MUTED,
-                                ),
                         ),
                 ),
                 KeyItemC(
@@ -1021,6 +1021,12 @@ val TR_QUE_NUMERIC =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay(","),
+                                    action = KeyAction.CommitText(","),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.BOTTOM_LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("|"),
@@ -1037,6 +1043,12 @@ val TR_QUE_NUMERIC =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("}"),
                                     action = KeyAction.CommitText("}"),
+                                    color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.BOTTOM to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("."),
+                                    action = KeyAction.CommitText("."),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM_RIGHT to
@@ -1107,17 +1119,12 @@ val TR_QUE_NUMERIC =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("°"),
                                     action = KeyAction.CommitText("°"),
+                                    color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.RIGHT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay(">"),
                                     action = KeyAction.CommitText(">"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_RIGHT to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("]"),
-                                    action = KeyAction.CommitText("]"),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.LEFT to
