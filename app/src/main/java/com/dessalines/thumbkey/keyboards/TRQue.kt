@@ -61,18 +61,6 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
                         action = KeyAction.CommitText("“"),
                         color = ColorVariant.MUTED,
                     ),
-                SwipeDirection.LEFT to
-                    KeyC(
-                        display = KeyDisplay.TextDisplay("\""),
-                        action = KeyAction.CommitText("\""),
-                        color = ColorVariant.MUTED,
-                    ),
-                SwipeDirection.RIGHT to
-                    KeyC(
-                        display = KeyDisplay.TextDisplay("'"),
-                        action = KeyAction.CommitText("'"),
-                        color = ColorVariant.MUTED,
-                    ),
                 SwipeDirection.TOP_RIGHT to
                     KeyC(
                         display = KeyDisplay.TextDisplay("‘"),
@@ -129,15 +117,10 @@ val SPACEBAR_ALL_MORE_SYMBOLS_SHIFTED =
                         ),
                     SwipeDirection.LEFT to
                         KeyC(
-                            display = KeyDisplay.TextDisplay("-"),
-                            action = KeyAction.CommitText("-"),
-                        ),
-                    SwipeDirection.BOTTOM_LEFT to
-                        KeyC(
                             display = KeyDisplay.TextDisplay("–"),
                             action = KeyAction.CommitText("–"),
                         ),
-                    SwipeDirection.BOTTOM_RIGHT to
+                    SwipeDirection.BOTTOM_LEFT to
                         KeyC(
                             display = KeyDisplay.TextDisplay("_"),
                             action = KeyAction.CommitText("_"),
@@ -228,6 +211,11 @@ val TR_QUE_MAIN =
                                     display = KeyDisplay.TextDisplay("\\"),
                                     action = KeyAction.CommitText("\\"),
                                     color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("-"),
+                                    action = KeyAction.CommitText("-"),
                                 ),
                         ),
                 ),
@@ -469,6 +457,11 @@ val TR_QUE_MAIN =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("\""),
+                                    action = KeyAction.CommitText("\""),
+                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("ç"),
@@ -512,6 +505,11 @@ val TR_QUE_MAIN =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("f"),
                                     action = KeyAction.CommitText("f"),
+                                ),
+                            SwipeDirection.TOP_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("'"),
+                                    action = KeyAction.CommitText("'"),
                                 ),
                             SwipeDirection.RIGHT to
                                 KeyC(
@@ -819,6 +817,11 @@ val TR_QUE_SHIFTED =
                                     display = KeyDisplay.TextDisplay("F"),
                                     action = KeyAction.CommitText("F"),
                                 ),
+                            SwipeDirection.TOP_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("'"),
+                                    action = KeyAction.CommitText("'"),
+                                ),
                             SwipeDirection.RIGHT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("Z"),
@@ -901,6 +904,11 @@ val TR_QUE_NUMERIC =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("-"),
+                                    action = KeyAction.CommitText("-"),
+                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("^"),
@@ -1086,6 +1094,11 @@ val TR_QUE_NUMERIC =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("\""),
+                                    action = KeyAction.CommitText("\""),
+                                ),
                             SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("<"),
@@ -1110,6 +1123,11 @@ val TR_QUE_NUMERIC =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("'"),
+                                    action = KeyAction.CommitText("'"),
+                                ),
                             SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("?"),
