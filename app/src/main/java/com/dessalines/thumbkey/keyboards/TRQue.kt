@@ -39,13 +39,11 @@ val RETURN_KEY_FOO = RETURN_KEY_ITEM.copy(
                                         .KEYCODE_DEL,
                                 ),
                             ),
-                        color = ColorVariant.MUTED,
                     ),
                 SwipeDirection.TOP to
                     KeyC(
                         display = KeyDisplay.IconDisplay(Icons.AutoMirrored.Outlined.KeyboardTab),
                         action = KeyAction.CommitText("\t"),
-                        color = ColorVariant.MUTED,
                     ),
             )
     )
@@ -71,13 +69,15 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
                     KeyC(
                         display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
                         action = KeyAction.ToggleShiftMode(true),
-                        color = ColorVariant.MUTED,
+                        size = FontSizeVariant.LARGE,
+                        color = ColorVariant.PRIMARY,
                     ),
                 SwipeDirection.BOTTOM to
                     KeyC(
                         display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropDown),
                         action = KeyAction.ToggleShiftMode(false),
-                        color = ColorVariant.MUTED,
+                        size = FontSizeVariant.LARGE,
+                        color = ColorVariant.PRIMARY,
                     ),
                 SwipeDirection.BOTTOM_LEFT to
                     KeyC(
