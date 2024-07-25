@@ -52,6 +52,11 @@ const val DEFAULT_BACKDROP_ENABLED = 0
 const val DEFAULT_KEY_PADDING = 0
 const val DEFAULT_KEY_BORDER_WIDTH = 1
 const val DEFAULT_KEY_RADIUS = 0
+const val DEFAULT_DRAG_RETURN_ENABLED = 1
+const val DEFAULT_CIRCULAR_DRAG_ENABLED = 1
+const val DEFAULT_CLOCKWISE_DRAG_ACTION = 0
+const val DEFAULT_COUNTERCLOCKWISE_DRAG_ACTION = 1
+const val DEFAULT_GHOST_KEYS_ENABLED = 0
 
 @Entity
 data class AppSettings(
@@ -202,6 +207,31 @@ data class AppSettings(
         defaultValue = DEFAULT_KEY_RADIUS.toString(),
     )
     val keyRadius: Int,
+    @ColumnInfo(
+        name = "drag_return_enabled",
+        defaultValue = DEFAULT_DRAG_RETURN_ENABLED.toString(),
+    )
+    val dragReturnEnabled: Int,
+    @ColumnInfo(
+        name = "circular_drag_enabled",
+        defaultValue = DEFAULT_CIRCULAR_DRAG_ENABLED.toString(),
+    )
+    val circularDragEnabled: Int,
+    @ColumnInfo(
+        name = "clockwise_drag_action",
+        defaultValue = DEFAULT_CLOCKWISE_DRAG_ACTION.toString(),
+    )
+    val clockwiseDragAction: Int,
+    @ColumnInfo(
+        name = "counterclockwise_drag_action",
+        defaultValue = DEFAULT_COUNTERCLOCKWISE_DRAG_ACTION.toString(),
+    )
+    val counterclockwiseDragAction: Int,
+    @ColumnInfo(
+        name = "ghost_keys_enabled",
+        defaultValue = DEFAULT_GHOST_KEYS_ENABLED.toString(),
+    )
+    val ghostKeysEnabled: Int,
 )
 
 data class LayoutsUpdate(
@@ -302,6 +332,16 @@ data class BehaviorUpdate(
     val autoCapitalize: Int,
     @ColumnInfo(name = "spacebar_multitaps")
     val spacebarMultiTaps: Int,
+    @ColumnInfo(name = "drag_return_enabled")
+    val dragReturnEnabled: Int,
+    @ColumnInfo(name = "circular_drag_enabled")
+    val circularDragEnabled: Int,
+    @ColumnInfo(name = "clockwise_drag_action")
+    val clockwiseDragAction: Int,
+    @ColumnInfo(name = "counterclockwise_drag_action")
+    val counterclockwiseDragAction: Int,
+    @ColumnInfo(name = "ghost_keys_enabled")
+    val ghostKeysEnabled: Int,
 )
 
 @Dao
@@ -327,7 +367,9 @@ interface AppSettingsDao {
 
 // Declares the DAO as a private property in the constructor. Pass in the DAO
 // instead of the whole database, because you only need access to the DAO
-class AppSettingsRepository(private val appSettingsDao: AppSettingsDao) {
+class AppSettingsRepository(
+    private val appSettingsDao: AppSettingsDao,
+) {
     private val _changelog = MutableStateFlow("")
     val changelog = _changelog.asStateFlow()
 
@@ -364,7 +406,11 @@ class AppSettingsRepository(private val appSettingsDao: AppSettingsDao) {
     suspend fun updateChangelog(ctx: Context) {
         withContext(Dispatchers.IO) {
             try {
-                val releasesStr = ctx.assets.open("RELEASES.md").bufferedReader().use { it.readText() }
+                val releasesStr =
+                    ctx.assets
+                        .open("RELEASES.md")
+                        .bufferedReader()
+                        .use { it.readText() }
                 _changelog.value = releasesStr
             } catch (e: Exception) {
                 Log.e("thumb-key", "Failed to load changelog: $e")
@@ -508,8 +554,36 @@ val MIGRATION_13_14 =
         }
     }
 
+val MIGRATION_14_15 =
+    object : Migration(14, 15) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL(
+                "alter table AppSettings add column drag_return_enabled INTEGER NOT NULL default $DEFAULT_DRAG_RETURN_ENABLED",
+            )
+            db.execSQL(
+                "alter table AppSettings add column circular_drag_enabled INTEGER NOT NULL default $DEFAULT_CIRCULAR_DRAG_ENABLED",
+            )
+            db.execSQL(
+                "alter table AppSettings add column clockwise_drag_action INTEGER NOT NULL default $DEFAULT_CLOCKWISE_DRAG_ACTION",
+            )
+            db.execSQL(
+                "alter table AppSettings add column counterclockwise_drag_action INTEGER NOT NULL " +
+                    "default $DEFAULT_COUNTERCLOCKWISE_DRAG_ACTION",
+            )
+        }
+    }
+
+val MIGRATION_15_16 =
+    object : Migration(15, 16) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL(
+                "alter table AppSettings add column ghost_keys_enabled INTEGER NOT NULL default $DEFAULT_GHOST_KEYS_ENABLED",
+            )
+        }
+    }
+
 @Database(
-    version = 14,
+    version = 16,
     entities = [AppSettings::class],
     exportSchema = true,
 )
@@ -525,12 +599,12 @@ abstract class AppDB : RoomDatabase() {
             // if it is, then create the database
             return instance ?: synchronized(this) {
                 val i =
-                    Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDB::class.java,
-                        "thumbkey",
-                    )
-                        .allowMainThreadQueries()
+                    Room
+                        .databaseBuilder(
+                            context.applicationContext,
+                            AppDB::class.java,
+                            "thumbkey",
+                        ).allowMainThreadQueries()
                         .addMigrations(
                             MIGRATION_1_2,
                             MIGRATION_2_3,
@@ -545,6 +619,8 @@ abstract class AppDB : RoomDatabase() {
                             MIGRATION_11_12,
                             MIGRATION_12_13,
                             MIGRATION_13_14,
+                            MIGRATION_14_15,
+                            MIGRATION_15_16,
                         )
                         // Necessary because it can't insert data on creation
                         .addCallback(
@@ -572,7 +648,9 @@ abstract class AppDB : RoomDatabase() {
     }
 }
 
-class AppSettingsViewModel(private val repository: AppSettingsRepository) : ViewModel() {
+class AppSettingsViewModel(
+    private val repository: AppSettingsRepository,
+) : ViewModel() {
     val appSettings = repository.appSettings
     val changelog = repository.changelog
 
@@ -607,8 +685,9 @@ class AppSettingsViewModel(private val repository: AppSettingsRepository) : View
         }
 }
 
-class AppSettingsViewModelFactory(private val repository: AppSettingsRepository) :
-    ViewModelProvider.Factory {
+class AppSettingsViewModelFactory(
+    private val repository: AppSettingsRepository,
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(AppSettingsViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

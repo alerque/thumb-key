@@ -99,6 +99,15 @@ Enabling `Backspace: Allow normal swipes to work with slide gestures`, in keyboa
 - Swipe left to delete whole words to the left of the cursor.
 - Swipe right to delete whole words to the right of the cursor.
 
+### Drag-and-return
+
+- You can type the opposite-case letter by dragging away from, then back to the original key.
+- Clockwise and counter-clockwise drags can be configured to type the opposite-case letter, or the equivalent center key on the numeric layout.
+
+### Ghost keys
+
+Enabling `Ghost keys` in keyboard settings will enable swiping hidden symbol keys without switching to the numeric layout.
+
 ### Coming from MessagEase Keyboard Tips
 
 - For those use to tapping on the hand key to hide the MessagEase Keyboard and make more screen real estate available, this can be done by using the Android back key or on Android 10 and higher using the guesture navigation for back.

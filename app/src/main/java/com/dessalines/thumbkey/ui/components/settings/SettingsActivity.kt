@@ -25,7 +25,6 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -43,6 +42,11 @@ import com.dessalines.thumbkey.db.DEFAULT_ANIMATION_HELPER_SPEED
 import com.dessalines.thumbkey.db.DEFAULT_ANIMATION_SPEED
 import com.dessalines.thumbkey.db.DEFAULT_AUTO_CAPITALIZE
 import com.dessalines.thumbkey.db.DEFAULT_BACKDROP_ENABLED
+import com.dessalines.thumbkey.db.DEFAULT_CIRCULAR_DRAG_ENABLED
+import com.dessalines.thumbkey.db.DEFAULT_CLOCKWISE_DRAG_ACTION
+import com.dessalines.thumbkey.db.DEFAULT_COUNTERCLOCKWISE_DRAG_ACTION
+import com.dessalines.thumbkey.db.DEFAULT_DRAG_RETURN_ENABLED
+import com.dessalines.thumbkey.db.DEFAULT_GHOST_KEYS_ENABLED
 import com.dessalines.thumbkey.db.DEFAULT_HIDE_LETTERS
 import com.dessalines.thumbkey.db.DEFAULT_HIDE_SYMBOLS
 import com.dessalines.thumbkey.db.DEFAULT_KEYBOARD_LAYOUT
@@ -95,7 +99,7 @@ fun SettingsActivity(
     val scrollState = rememberScrollState()
     var showConfirmResetDialog by remember { mutableStateOf(false) }
 
-    val layoutsState = remember { mutableStateOf(keyboardLayoutsSetFromDbIndexString(settings?.keyboardLayouts)) }
+    val layoutsState = keyboardLayoutsSetFromDbIndexString(settings?.keyboardLayouts)
 
     if (showConfirmResetDialog) {
         AlertDialog(
@@ -114,7 +118,6 @@ fun SettingsActivity(
                         showConfirmResetDialog = false
                         resetAppSettingsToDefault(
                             appSettingsViewModel,
-                            layoutsState,
                         )
                     },
                 ) {
@@ -136,7 +139,11 @@ fun SettingsActivity(
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) },
         topBar = {
-            SimpleTopAppBar(text = stringResource(R.string.app_name), navController = navController, showBack = false)
+            SimpleTopAppBar(
+                text = stringResource(R.string.app_name),
+                navController = navController,
+                showBack = false,
+            )
         },
         content = { padding ->
             Column(
@@ -165,21 +172,20 @@ fun SettingsActivity(
                     }
 
                     MultiSelectListPreference(
-                        value = layoutsState.value,
+                        value = layoutsState,
                         values = KeyboardLayout.entries.sortedBy { it.keyboardDefinition.title },
                         valueToText = {
                             AnnotatedString(it.keyboardDefinition.title)
                         },
                         onValueChange = {
-                            if (it.isEmpty()) {
-                                layoutsState.value = keyboardLayoutsSetFromDbIndexString(DEFAULT_KEYBOARD_LAYOUT.toString())
-                            } else {
-                                layoutsState.value = it
-                            }
+                            val update =
+                                it.ifEmpty {
+                                    keyboardLayoutsSetFromDbIndexString(DEFAULT_KEYBOARD_LAYOUT.toString())
+                                }
 
                             updateLayouts(
                                 appSettingsViewModel,
-                                layoutsState,
+                                update,
                             )
                         },
                         icon = {
@@ -192,7 +198,8 @@ fun SettingsActivity(
                             Text(stringResource(R.string.layouts))
                         },
                         summary = {
-                            val layoutsStr = layoutsState.value.joinToString(", ") { it.keyboardDefinition.title }
+                            val layoutsStr =
+                                layoutsState.joinToString(", ") { it.keyboardDefinition.title }
                             Text(layoutsStr)
                         },
                     )
@@ -260,11 +267,10 @@ fun SettingsActivity(
     )
 }
 
-private fun resetAppSettingsToDefault(
-    appSettingsViewModel: AppSettingsViewModel,
-    layoutsState: MutableState<Set<KeyboardLayout>>,
-) {
-    layoutsState.value = keyboardLayoutsSetFromDbIndexString(DEFAULT_KEYBOARD_LAYOUT.toString())
+private fun resetAppSettingsToDefault(appSettingsViewModel: AppSettingsViewModel) {
+    val layoutsDefault = keyboardLayoutsSetFromDbIndexString(DEFAULT_KEYBOARD_LAYOUT.toString())
+    updateLayouts(appSettingsViewModel, layoutsDefault)
+
     appSettingsViewModel.update(
         AppSettings(
             id = 1,
@@ -297,21 +303,27 @@ private fun resetAppSettingsToDefault(
             keyPadding = DEFAULT_KEY_PADDING,
             keyBorderWidth = DEFAULT_KEY_BORDER_WIDTH,
             keyRadius = DEFAULT_KEY_RADIUS,
+            dragReturnEnabled = DEFAULT_DRAG_RETURN_ENABLED,
+            circularDragEnabled = DEFAULT_CIRCULAR_DRAG_ENABLED,
+            clockwiseDragAction = DEFAULT_CLOCKWISE_DRAG_ACTION,
+            counterclockwiseDragAction = DEFAULT_COUNTERCLOCKWISE_DRAG_ACTION,
+            ghostKeysEnabled = DEFAULT_GHOST_KEYS_ENABLED,
         ),
     )
 }
 
 private fun updateLayouts(
     appSettingsViewModel: AppSettingsViewModel,
-    layoutsState: MutableState<Set<KeyboardLayout>>,
+    layoutsState: Set<KeyboardLayout>,
 ) {
     appSettingsViewModel.updateLayouts(
         LayoutsUpdate(
             id = 1,
             // Set the current to the first
-            keyboardLayout = layoutsState.value.first().ordinal,
+            keyboardLayout = layoutsState.first().ordinal,
             keyboardLayouts =
-                layoutsState.value.map { it.ordinal }
+                layoutsState
+                    .map { it.ordinal }
                     .joinToString(),
         ),
     )

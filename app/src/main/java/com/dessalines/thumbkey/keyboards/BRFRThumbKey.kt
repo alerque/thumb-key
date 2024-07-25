@@ -58,6 +58,12 @@ val KB_BR_FR_THUMBKEY_MAIN =
                                     display = KeyDisplay.TextDisplay("q"),
                                     action = KeyAction.CommitText("q"),
                                 ),
+                            SwipeDirection.BOTTOM to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("-"),
+                                    action = KeyAction.CommitText("-"),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("\""),
@@ -111,6 +117,12 @@ val KB_BR_FR_THUMBKEY_MAIN =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("ꝃ"),
+                                    action = KeyAction.CommitText("ꝃ"),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("ï"),
@@ -127,11 +139,6 @@ val KB_BR_FR_THUMBKEY_MAIN =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("k"),
                                     action = KeyAction.CommitText("k"),
-                                ),
-                            SwipeDirection.BOTTOM to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("ꝃ"),
-                                    action = KeyAction.CommitText("ꝃ"),
                                 ),
                             SwipeDirection.BOTTOM_LEFT to
                                 KeyC(
@@ -226,6 +233,7 @@ val KB_BR_FR_THUMBKEY_MAIN =
                                 KeyC(
                                     display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
                                     action = KeyAction.ToggleShiftMode(true),
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(true),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.TOP_RIGHT to
@@ -239,6 +247,11 @@ val KB_BR_FR_THUMBKEY_MAIN =
                                     display = KeyDisplay.TextDisplay("â"),
                                     action = KeyAction.CommitText("â"),
                                     color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.BOTTOM to
+                                KeyC(
+                                    action = KeyAction.ToggleShiftMode(false),
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(false),
                                 ),
                             SwipeDirection.BOTTOM_RIGHT to
                                 KeyC(
@@ -276,6 +289,12 @@ val KB_BR_FR_THUMBKEY_MAIN =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("m"),
                                     action = KeyAction.CommitText("m"),
+                                ),
+                            SwipeDirection.BOTTOM_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("!"),
+                                    action = KeyAction.CommitText("!"),
+                                    color = ColorVariant.MUTED,
                                 ),
                         ),
                 ),
@@ -440,6 +459,12 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                                     display = KeyDisplay.TextDisplay("Q"),
                                     action = KeyAction.CommitText("Q"),
                                 ),
+                            SwipeDirection.BOTTOM to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("-"),
+                                    action = KeyAction.CommitText("-"),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("\""),
@@ -493,6 +518,12 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                         ),
                     swipes =
                         mapOf(
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("Ꝃ"),
+                                    action = KeyAction.CommitText("Ꝃ"),
+                                    color = ColorVariant.MUTED,
+                                ),
                             SwipeDirection.TOP to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("Ï"),
@@ -509,12 +540,6 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("K"),
                                     action = KeyAction.CommitText("K"),
-                                ),
-                            SwipeDirection.BOTTOM to
-                                KeyC(
-                                    display = KeyDisplay.TextDisplay("Ꝃ"),
-                                    action = KeyAction.CommitText("Ꝃ"),
-                                    color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM_LEFT to
                                 KeyC(
@@ -609,6 +634,7 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                                 KeyC(
                                     display = KeyDisplay.IconDisplay(Icons.Outlined.KeyboardCapslock),
                                     action = KeyAction.ToggleCapsLock,
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(true),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.TOP_RIGHT to
@@ -633,6 +659,7 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                                 KeyC(
                                     display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropDown),
                                     action = KeyAction.ToggleShiftMode(false),
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(false),
                                     color = ColorVariant.MUTED,
                                 ),
                             SwipeDirection.BOTTOM_LEFT to
@@ -665,6 +692,12 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("M"),
                                     action = KeyAction.CommitText("M"),
+                                ),
+                            SwipeDirection.BOTTOM_RIGHT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("!"),
+                                    action = KeyAction.CommitText("!"),
+                                    color = ColorVariant.MUTED,
                                 ),
                         ),
                 ),
@@ -716,6 +749,11 @@ val KB_BR_FR_THUMBKEY_SHIFTED =
                                     display = KeyDisplay.TextDisplay(","),
                                     action = KeyAction.CommitText(","),
                                     color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("Z"),
+                                    action = KeyAction.CommitText("Z"),
                                 ),
                         ),
                 ),

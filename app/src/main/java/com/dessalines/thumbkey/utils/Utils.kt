@@ -28,6 +28,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
@@ -43,6 +44,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
+import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.atan2
 import kotlin.math.max
@@ -52,7 +54,6 @@ import kotlin.math.sqrt
 
 const val TAG = "com.thumbkey"
 
-const val THUMBKEY_IME_NAME = "com.dessalines.thumbkey/.IMEService"
 const val IME_ACTION_CUSTOM_LABEL = EditorInfo.IME_MASK_ACTION + 1
 
 fun accelCurve(
@@ -205,15 +206,14 @@ fun acceleratingCursorDistanceQuadratic(
 }
 
 @Composable
-fun colorVariantToColor(colorVariant: ColorVariant): Color {
-    return when (colorVariant) {
+fun colorVariantToColor(colorVariant: ColorVariant): Color =
+    when (colorVariant) {
         ColorVariant.SURFACE -> MaterialTheme.colorScheme.surface
         ColorVariant.SURFACE_VARIANT -> MaterialTheme.colorScheme.surfaceVariant
         ColorVariant.PRIMARY -> MaterialTheme.colorScheme.primary
         ColorVariant.SECONDARY -> MaterialTheme.colorScheme.secondary
         ColorVariant.MUTED -> MaterialTheme.colorScheme.secondary.copy(alpha = 0.5F)
     }
-}
 
 fun fontSizeVariantToFontSize(
     fontSizeVariant: FontSizeVariant,
@@ -246,13 +246,12 @@ val Float.pxToSp
             TextUnitType.Sp,
         )
 
-fun keyboardPositionToAlignment(position: KeyboardPosition): Alignment {
-    return when (position) {
+fun keyboardPositionToAlignment(position: KeyboardPosition): Alignment =
+    when (position) {
         KeyboardPosition.Right -> Alignment.BottomEnd
         KeyboardPosition.Center -> Alignment.BottomCenter
         KeyboardPosition.Left -> Alignment.BottomStart
     }
-}
 
 /**
  * If this doesn't meet the minimum swipe length, it returns null
@@ -336,6 +335,7 @@ fun performKeyAction(
         is KeyAction.CommitText -> {
             val text = action.text
             Log.d(TAG, "committing key text: $text")
+            ime.ignoreNextCursorMove()
             ime.currentInputConnection.commitText(
                 text,
                 1,
@@ -372,6 +372,7 @@ fun performKeyAction(
             Log.d(TAG, "replacing last word")
             val text = action.text
 
+            ime.ignoreNextCursorMove()
             ime.currentInputConnection.deleteSurroundingText(action.trimCount, 0)
             ime.currentInputConnection.commitText(
                 text,
@@ -589,6 +590,7 @@ fun performKeyAction(
                             " " -> "°"
                             else -> textBefore
                         }
+
                     "˘" ->
                         when (textBefore) {
                             "a" -> "ă"
@@ -606,6 +608,7 @@ fun performKeyAction(
                             " " -> "˘"
                             else -> textBefore
                         }
+
                     "!" ->
                         when (textBefore) {
                             "a" -> "æ"
@@ -795,6 +798,30 @@ fun performKeyAction(
                             else -> textBefore
                         }
 
+                    "ˇ" ->
+                        when (textBefore) {
+                            "c" -> "č"
+                            "d" -> "ď"
+                            "e" -> "ě"
+                            "l" -> "ľ"
+                            "n" -> "ň"
+                            "r" -> "ř"
+                            "s" -> "š"
+                            "t" -> "ť"
+                            "z" -> "ž"
+                            "C" -> "Č"
+                            "D" -> "Ď"
+                            "E" -> "Ě"
+                            "L" -> "Ľ"
+                            "N" -> "Ň"
+                            "R" -> "Ř"
+                            "S" -> "Š"
+                            "T" -> "Ť"
+                            "Z" -> "Ž"
+                            " " -> "ˇ"
+                            else -> textBefore
+                        }
+
                     else -> throw IllegalStateException("Invalid key modifier")
                 }
 
@@ -939,6 +966,38 @@ fun performKeyAction(
                 }
             }
         }
+
+        is KeyAction.ToggleCurrentWordCapitalization -> {
+            val maxLength = 100
+            val wordBorderCharacters = ".,;:!?\"'()-—[]{}<>/\\|#$%^_+=~`"
+            val textBeforeCursor = ime.currentInputConnection.getTextBeforeCursor(maxLength, 0)
+            if (!textBeforeCursor.isNullOrEmpty()) {
+                val startWordIndex =
+                    textBeforeCursor
+                        .toString()
+                        .indexOfLast { it.isWhitespace() || wordBorderCharacters.contains(it) }
+                        .plus(1)
+                if (startWordIndex < textBeforeCursor.length) {
+                    val replacementText =
+                        if (action.toggleUp) {
+                            if (textBeforeCursor[startWordIndex].isUpperCase()) {
+                                textBeforeCursor.substring(startWordIndex).uppercase()
+                            } else {
+                                textBeforeCursor
+                                    .substring(startWordIndex, startWordIndex + 1)
+                                    .uppercase() + textBeforeCursor.substring(startWordIndex + 1)
+                            }
+                        } else {
+                            textBeforeCursor.substring(startWordIndex).lowercase()
+                        }
+                    ime.currentInputConnection.deleteSurroundingText(
+                        textBeforeCursor.length - startWordIndex,
+                        0,
+                    )
+                    ime.currentInputConnection.commitText(replacementText, 1)
+                }
+            }
+        }
     }
 }
 
@@ -999,24 +1058,7 @@ private fun autoCapitalize(
     }
 }
 
-fun autoCapitalizeCheck(ime: IMEService): Boolean {
-    return isEmptyField(ime) || isPunctuationEnd(ime)
-}
-
-/**
- * Checks if the field is empty
- */
-fun isEmptyField(ime: IMEService): Boolean {
-    return ime.currentInputConnection.getTextBeforeCursor(1, 0).isNullOrEmpty()
-}
-
-/**
- * Checks if the field ends with a punctuation
- */
-fun isPunctuationEnd(ime: IMEService): Boolean {
-    val textBefore = ime.currentInputConnection.getTextBeforeCursor(2, 0)
-    return (listOf(". ", "? ", "! ").contains(textBefore))
-}
+fun autoCapitalizeCheck(ime: IMEService): Boolean = ime.currentInputConnection.getCursorCapsMode(ime.currentInputEditorInfo.inputType) > 0
 
 /**
  * Avoid capitalizing or switching to shifted mode in certain edit boxes
@@ -1031,7 +1073,18 @@ fun isUriOrEmailOrPasswordField(ime: IMEService): Boolean {
         InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD,
         InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD,
         InputType.TYPE_NUMBER_VARIATION_PASSWORD,
-    ).contains(inputType) || ime.currentInputEditorInfo.inputType == EditorInfo.TYPE_NULL
+    ).contains(inputType) ||
+        ime.currentInputEditorInfo.inputType == EditorInfo.TYPE_NULL
+}
+
+fun isPasswordField(ime: IMEService): Boolean {
+    val inputType = ime.currentInputEditorInfo.inputType and (InputType.TYPE_MASK_VARIATION)
+    return listOf(
+        InputType.TYPE_TEXT_VARIATION_PASSWORD,
+        InputType.TYPE_TEXT_VARIATION_WEB_PASSWORD,
+        InputType.TYPE_NUMBER_VARIATION_PASSWORD,
+    ).contains(inputType) ||
+        ime.currentInputEditorInfo.inputType == EditorInfo.TYPE_NULL
 }
 
 fun deleteWordBeforeCursor(ime: IMEService) {
@@ -1125,20 +1178,18 @@ fun Boolean.toInt() = this.compareTo(false)
 /**
  * The layouts there are whats stored in the DB, a string comma set of title index numbers
  */
-fun keyboardLayoutsSetFromDbIndexString(layouts: String?): Set<KeyboardLayout> {
-    return layouts?.split(",")?.map { KeyboardLayout.entries[it.trim().toInt()] }?.toSet()
+fun keyboardLayoutsSetFromDbIndexString(layouts: String?): Set<KeyboardLayout> =
+    layouts?.split(",")?.map { KeyboardLayout.entries[it.trim().toInt()] }?.toSet()
         ?: setOf(
             KeyboardLayout.entries[DEFAULT_KEYBOARD_LAYOUT],
         )
-}
 
-fun Context.getPackageInfo(): PackageInfo {
-    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+fun Context.getPackageInfo(): PackageInfo =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         packageManager.getPackageInfo(packageName, PackageManager.PackageInfoFlags.of(0))
     } else {
         packageManager.getPackageInfo(packageName, 0)
     }
-}
 
 fun Context.getVersionCode(): Int =
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -1148,25 +1199,36 @@ fun Context.getVersionCode(): Int =
         getPackageInfo().versionCode
     }
 
+/**
+ * The debug and app IME names act strange, so you need to check both
+ */
+fun Context.getImeNames(): List<String> =
+    listOf(
+        "$packageName/com.dessalines.thumbkey.IMEService",
+        "$packageName/.IMEService",
+    )
+
 fun startSelection(ime: IMEService): Selection {
     val cursorPosition =
-        ime.currentInputConnection.getTextBeforeCursor(
-            Integer.MAX_VALUE,
-            0,
-        )?.length
+        ime.currentInputConnection
+            .getTextBeforeCursor(
+                Integer.MAX_VALUE,
+                0,
+            )?.length
     cursorPosition?.let {
         return Selection(it, it, true)
     }
     return Selection()
 }
 
-fun getLocalCurrency(): String? {
-    return ConfigurationCompat.getLocales(Resources.getSystem().configuration)[0]?.let {
-        NumberFormat.getCurrencyInstance(
-            it,
-        ).currency?.symbol
+fun getLocalCurrency(): String? =
+    ConfigurationCompat.getLocales(Resources.getSystem().configuration)[0]?.let {
+        NumberFormat
+            .getCurrencyInstance(
+                it,
+            ).currency
+            ?.symbol
     }
-}
 
 fun lastColKeysToFirst(board: KeyboardC): KeyboardC {
     val newArr =
@@ -1179,3 +1241,47 @@ fun lastColKeysToFirst(board: KeyboardC): KeyboardC {
         }
     return KeyboardC(newArr)
 }
+
+fun circularDirection(
+    positions: List<Offset>,
+    circleCompletionTolerance: Float,
+): CircularDirection? {
+    val center = positions.reduce(Offset::plus) / positions.count().toFloat()
+    val radii = positions.map { it.getDistanceTo(center) }
+    val maxRadius = radii.reduce { acc, it -> if (it > acc) it else acc }
+    // This is similar to accepting an ellipse with aspect ratio 3:1
+    val minRadius = maxRadius / 3
+    val similarRadii =
+        radii.all {
+            it in minRadius..maxRadius
+        }
+
+    if (!similarRadii) {
+        return null
+    }
+    val spannedAngle =
+        positions
+            .asSequence()
+            .map { it - center } // transform center into origin
+            .windowed(2)
+            .map { (a, b) ->
+                val (xa, ya) = a
+                val (xb, yb) = b
+                // angle between two vectors
+                atan2(
+                    xa * yb - ya * xb,
+                    xa * xb + ya * yb,
+                )
+            }.sum()
+
+    val averageRadius = (minRadius + maxRadius) / 2
+    // The threshold is a full circumference minus the arc with length equal to the tolerance
+    val angleThreshold = 2 * PI * (1 - circleCompletionTolerance / averageRadius)
+    return when {
+        spannedAngle >= angleThreshold -> CircularDirection.Clockwise
+        spannedAngle <= -angleThreshold -> CircularDirection.Counterclockwise
+        else -> null
+    }
+}
+
+fun Offset.getDistanceTo(other: Offset) = (other - this).getDistance()

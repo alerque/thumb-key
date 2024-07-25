@@ -1,6 +1,7 @@
 package com.dessalines.thumbkey.keyboards
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowDropDown
 import androidx.compose.material.icons.outlined.ArrowDropUp
 import androidx.compose.material.icons.outlined.Copyright
 import androidx.compose.material.icons.outlined.KeyboardCapslock
@@ -218,6 +219,11 @@ val KB_EN_ES_CA_THUMBKEY_MAIN =
                                     display = KeyDisplay.TextDisplay("l"),
                                     action = KeyAction.CommitText("l"),
                                 ),
+                            SwipeDirection.BOTTOM to
+                                KeyC(
+                                    action = KeyAction.ToggleShiftMode(false),
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(false),
+                                ),
                             SwipeDirection.BOTTOM_LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("l·l"),
@@ -227,6 +233,7 @@ val KB_EN_ES_CA_THUMBKEY_MAIN =
                                 KeyC(
                                     display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
                                     action = KeyAction.ToggleShiftMode(true),
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(true),
                                     color = ColorVariant.MUTED,
                                 ),
                         ),
@@ -301,10 +308,15 @@ val KB_EN_ES_CA_THUMBKEY_MAIN =
                                     action = KeyAction.CommitText("*"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.RIGHT to
+                            SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("í"),
                                     action = KeyAction.CommitText("í"),
+                                ),
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("ï"),
+                                    action = KeyAction.CommitText("ï"),
                                 ),
                         ),
                 ),
@@ -553,6 +565,14 @@ val KB_EN_ES_CA_HUMBKEY_SHIFTED =
                                     display = KeyDisplay.IconDisplay(Icons.Outlined.KeyboardCapslock),
                                     capsModeDisplay = KeyDisplay.IconDisplay(Icons.Outlined.Copyright),
                                     action = KeyAction.ToggleCapsLock,
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(true),
+                                    color = ColorVariant.MUTED,
+                                ),
+                            SwipeDirection.BOTTOM to
+                                KeyC(
+                                    display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropDown),
+                                    action = KeyAction.ToggleShiftMode(false),
+                                    swipeReturnAction = KeyAction.ToggleCurrentWordCapitalization(false),
                                     color = ColorVariant.MUTED,
                                 ),
                         ),
@@ -627,10 +647,15 @@ val KB_EN_ES_CA_HUMBKEY_SHIFTED =
                                     action = KeyAction.CommitText("*"),
                                     color = ColorVariant.MUTED,
                                 ),
-                            SwipeDirection.RIGHT to
+                            SwipeDirection.LEFT to
                                 KeyC(
                                     display = KeyDisplay.TextDisplay("Í"),
                                     action = KeyAction.CommitText("Í"),
+                                ),
+                            SwipeDirection.TOP_LEFT to
+                                KeyC(
+                                    display = KeyDisplay.TextDisplay("Ï"),
+                                    action = KeyAction.CommitText("Ï"),
                                 ),
                         ),
                 ),
