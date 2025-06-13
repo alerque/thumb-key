@@ -1,11 +1,16 @@
+@file:Suppress("ktlint:standard:no-wildcard-imports")
+
 package com.dessalines.thumbkey.keyboards
 
-import com.dessalines.thumbkey.utils.KeyboardDefinition
-import com.dessalines.thumbkey.utils.KeyboardDefinitionModes
+import com.dessalines.thumbkey.utils.*
+import com.dessalines.thumbkey.utils.ColorVariant.*
+import com.dessalines.thumbkey.utils.FontSizeVariant.*
+import com.dessalines.thumbkey.utils.KeyAction.*
+import com.dessalines.thumbkey.utils.SwipeNWay.*
 
 val KB_FA_THUMBKEY_SAMSUNG: KeyboardDefinition =
     KeyboardDefinition(
-        title = "thumb-key فارسی samsung",
+        title = "فارسی thumb-key samsung",
         modes =
             KeyboardDefinitionModes(
                 main = KB_FA_THUMBKEY_MAIN,

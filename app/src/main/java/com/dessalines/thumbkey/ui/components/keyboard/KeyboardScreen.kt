@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -70,22 +71,39 @@ import com.dessalines.thumbkey.utils.KeyboardMode
 import com.dessalines.thumbkey.utils.KeyboardPosition
 import com.dessalines.thumbkey.utils.TAG
 import com.dessalines.thumbkey.utils.getKeyboardMode
+import com.dessalines.thumbkey.utils.getModifiedKeyboardDefinition
 import com.dessalines.thumbkey.utils.keyboardPositionToAlignment
 import com.dessalines.thumbkey.utils.toBool
+import kotlin.time.TimeMark
 
 @Composable
 fun KeyboardScreen(
     settings: AppSettings?,
     onSwitchLanguage: () -> Unit,
-    onSwitchPosition: () -> Unit,
+    onChangePosition: ((old: KeyboardPosition) -> KeyboardPosition) -> Unit,
 ) {
     val ctx = LocalContext.current as IMEService
+
+    val layout =
+        KeyboardLayout.entries.sortedBy { it.ordinal }[
+            settings?.keyboardLayout
+                ?: DEFAULT_KEYBOARD_LAYOUT,
+        ]
+
+    val keyMods = settings?.keyModifications
+    val keyboardDefinition =
+        if (!keyMods.isNullOrEmpty()) {
+            getModifiedKeyboardDefinition(layout, keyMods)
+                ?: layout.keyboardDefinition
+        } else {
+            layout.keyboardDefinition
+        }
 
     var mode by remember {
         val startMode =
             getKeyboardMode(
                 ime = ctx,
-                autoCapitalize = settings?.autoCapitalize?.toBool() ?: false,
+                autoCapitalize = settings?.autoCapitalize?.toBool() == true && keyboardDefinition.settings.autoShift,
             )
 
         mutableStateOf(startMode)
@@ -96,19 +114,15 @@ fun KeyboardScreen(
     }
 
     // TODO get rid of this crap
-    val lastAction = remember { mutableStateOf<KeyAction?>(null) }
-
-    val keyboardDefinition =
-        KeyboardLayout.entries.sortedBy { it.ordinal }[
-            settings?.keyboardLayout
-                ?: DEFAULT_KEYBOARD_LAYOUT,
-        ].keyboardDefinition
+    val lastAction = remember { mutableStateOf<Pair<KeyAction, TimeMark>?>(null) }
 
     val keyboard =
         when (mode) {
             KeyboardMode.MAIN -> keyboardDefinition.modes.main
             KeyboardMode.SHIFTED -> keyboardDefinition.modes.shifted
             KeyboardMode.NUMERIC -> keyboardDefinition.modes.numeric
+            KeyboardMode.CTRLED -> keyboardDefinition.modes.ctrled!!
+            KeyboardMode.ALTED -> keyboardDefinition.modes.alted!!
             else -> KB_EN_THUMBKEY_MAIN
         }
 
@@ -183,6 +197,7 @@ fun KeyboardScreen(
             Row(
                 modifier =
                     Modifier
+                        .navigationBarsPadding()
                         .padding(bottom = pushupSizeDp)
                         .fillMaxWidth()
                         .then(
@@ -279,6 +294,22 @@ fun KeyboardScreen(
                                             KeyboardMode.MAIN
                                         }
                                 },
+                                onToggleCtrlMode = { enable ->
+                                    mode =
+                                        if (enable) {
+                                            KeyboardMode.CTRLED
+                                        } else {
+                                            KeyboardMode.MAIN
+                                        }
+                                },
+                                onToggleAltMode = { enable ->
+                                    mode =
+                                        if (enable) {
+                                            KeyboardMode.ALTED
+                                        } else {
+                                            KeyboardMode.MAIN
+                                        }
+                                },
                                 onToggleNumericMode = { enable ->
                                     mode =
                                         if (enable) {
@@ -309,7 +340,13 @@ fun KeyboardScreen(
                                     }
                                 },
                                 onSwitchLanguage = onSwitchLanguage,
-                                onSwitchPosition = onSwitchPosition,
+                                onChangePosition = onChangePosition,
+                                onKeyEvent = {
+                                    when (mode) {
+                                        KeyboardMode.CTRLED, KeyboardMode.ALTED -> mode = KeyboardMode.MAIN
+                                        else -> {}
+                                    }
+                                },
                                 dragReturnEnabled = dragReturnEnabled,
                                 circularDragEnabled = circularDragEnabled,
                                 clockwiseDragAction = clockwiseDragAction,
@@ -352,6 +389,7 @@ fun KeyboardScreen(
             Column(
                 modifier =
                     Modifier
+                        .navigationBarsPadding()
                         .then(
                             if (backdropEnabled) {
                                 Modifier.padding(top = backdropPadding)
@@ -367,8 +405,9 @@ fun KeyboardScreen(
                                 val ghostKey =
                                     if (ghostKeysEnabled) {
                                         when (mode) {
-                                            KeyboardMode.MAIN -> keyboardDefinition.modes.numeric
-                                            KeyboardMode.SHIFTED -> keyboardDefinition.modes.numeric
+                                            KeyboardMode.MAIN, KeyboardMode.SHIFTED, KeyboardMode.CTRLED, KeyboardMode.ALTED -> {
+                                                keyboardDefinition.modes.numeric
+                                            }
                                             else -> null
                                         }?.arr?.getOrNull(i)?.getOrNull(j)
                                     } else {
@@ -414,6 +453,22 @@ fun KeyboardScreen(
                                                 KeyboardMode.MAIN
                                             }
                                     },
+                                    onToggleCtrlMode = { enable ->
+                                        mode =
+                                            if (enable) {
+                                                KeyboardMode.CTRLED
+                                            } else {
+                                                KeyboardMode.MAIN
+                                            }
+                                    },
+                                    onToggleAltMode = { enable ->
+                                        mode =
+                                            if (enable) {
+                                                KeyboardMode.ALTED
+                                            } else {
+                                                KeyboardMode.MAIN
+                                            }
+                                    },
                                     onToggleNumericMode = { enable ->
                                         mode =
                                             if (enable) {
@@ -434,6 +489,12 @@ fun KeyboardScreen(
                                     onToggleCapsLock = {
                                         capsLock = !capsLock
                                     },
+                                    onKeyEvent = {
+                                        when (mode) {
+                                            KeyboardMode.CTRLED, KeyboardMode.ALTED -> mode = KeyboardMode.MAIN
+                                            else -> {}
+                                        }
+                                    },
                                     onAutoCapitalize = { enable ->
                                         if (mode !== KeyboardMode.NUMERIC) {
                                             if (enable) {
@@ -444,7 +505,7 @@ fun KeyboardScreen(
                                         }
                                     },
                                     onSwitchLanguage = onSwitchLanguage,
-                                    onSwitchPosition = onSwitchPosition,
+                                    onChangePosition = onChangePosition,
                                     oppositeCaseKey =
                                         when (mode) {
                                             KeyboardMode.MAIN -> keyboardDefinition.modes.shifted
@@ -453,7 +514,7 @@ fun KeyboardScreen(
                                         }?.arr?.getOrNull(i)?.getOrNull(j),
                                     numericKey =
                                         when (mode) {
-                                            KeyboardMode.MAIN, KeyboardMode.SHIFTED ->
+                                            KeyboardMode.MAIN, KeyboardMode.SHIFTED, KeyboardMode.CTRLED, KeyboardMode.ALTED ->
                                                 keyboardDefinition.modes.numeric.arr
                                                     .getOrNull(i)
                                                     ?.getOrNull(j)
