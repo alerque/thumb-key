@@ -38,8 +38,8 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
         swipeType = SwipeNWay.EIGHT_WAY,
         topLeft =
             KeyC(
-                """, color = MUTED),
-        topRight = KeyC("'", color = MUTED),
+                "“", color = MUTED),
+        topRight = KeyC("‘", color = MUTED),
         top = KeyC(
             display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
             action = KeyAction.ToggleShiftMode(true),
@@ -52,10 +52,10 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
             size = LARGE,
             color = PRIMARY,
         ),
-        bottomLeft = KeyC(""",
+        bottomLeft = KeyC("”",
                 color = MUTED,
             ),
-        bottomRight = KeyC("'", color = MUTED),
+        bottomRight = KeyC("’", color = MUTED),
         right = KeyC("—", color = MUTED),
         left = KeyC("–", color = MUTED),
     )
