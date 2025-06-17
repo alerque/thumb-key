@@ -264,13 +264,13 @@ val KB_TR_QUE_SHIFTED =
                 ),
                 SPACEBAR_ALL_MORE_SYMBOLS.copy(
                     top =
-                    KeyC(
-                        display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
-                        action = ShiftAndCapsLock(true),
-                        size = LARGE,
-                        color = MUTED,
-                    ),
-                )
+                        KeyC(
+                            display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
+                            action = ShiftAndCapsLock(true),
+                            size = LARGE,
+                            color = MUTED,
+                        ),
+                ),
             ),
             listOf(
                 BACKSPACE_KEY_ITEM,
