@@ -325,6 +325,8 @@ val KB_TR_QUE_NUMERIC =
                     topLeft = KeyC("`", color = MUTED),
                     top = KeyC("~", color = MUTED),
                     topRight = KeyC("/", color = MUTED),
+                    bottomLeft = KeyC("€", color = MUTED),
+                    left = KeyC("₸", color = MUTED),
                 ),
                 KeyItemC(
                     center = KeyC("2", size = LARGE),
