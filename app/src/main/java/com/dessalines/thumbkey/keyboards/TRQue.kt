@@ -60,7 +60,7 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
         left = KeyC("–", color = MUTED),
     )
 
-val TR_QUE_MAIN =
+val KB_TR_QUE_MAIN =
     KeyboardC(
         listOf(
             listOf(
@@ -172,7 +172,7 @@ val TR_QUE_MAIN =
         ),
     )
 
-val TR_QUE_SHIFTED =
+val KB_TR_QUE_SHIFTED =
     KeyboardC(
         listOf(
             listOf(
@@ -284,19 +284,19 @@ val TR_QUE_SHIFTED =
         ),
     )
 
-val TR_QUE_NUMERIC = NUMERIC_KEYBOARD
+val KB_TR_QUE_NUMERIC = NUMERIC_KEYBOARD
 
-val TR_QUE: KeyboardDefinition =
+val KB_TR_QUE: KeyboardDefinition =
     KeyboardDefinition(
         title = "türkçe que",
         modes =
             KeyboardDefinitionModes(
-                main = TR_QUE_MAIN,
-                shifted = TR_QUE_SHIFTED,
-                numeric = TR_QUE_NUMERIC,
+                main = KB_TR_QUE_MAIN,
+                shifted = KB_TR_QUE_SHIFTED,
+                numeric = KB_TR_QUE_NUMERIC,
             ),
         settings =
             KeyboardDefinitionSettings(
-                autoCapitalizers = listOf(::autoCapitalizeI, ::autoCapitalizeIApostrophe),
+                autoCapitalizers = arrayOf(::autoCapitalizeI, ::autoCapitalizeIApostrophe),
             ),
     )
