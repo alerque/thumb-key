@@ -12,7 +12,7 @@ import com.dessalines.thumbkey.utils.FontSizeVariant.*
 import com.dessalines.thumbkey.utils.KeyAction.*
 import com.dessalines.thumbkey.utils.SwipeNWay.*
 
-val RETURN_KEY_FOO =
+val RETURN_KEY_ARTI =
     RETURN_KEY_ITEM.copy(
         swipeType = FOUR_WAY_CROSS,
         left =
@@ -33,7 +33,7 @@ val RETURN_KEY_FOO =
             ),
     )
 
-val SPACEBAR_ALL_MORE_SYMBOLS =
+val SPACEBAR_ALL_SYMBOLS_ARTI =
     SPACEBAR_ALL_SYMBOLS.copy(
         swipeType = EIGHT_WAY,
         topLeft =
@@ -63,7 +63,7 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
         left = KeyC("–", color = MUTED),
     )
 
-val KB_TR_QUE_MAIN =
+val KB_TR_ARTI_MAIN =
     KeyboardC(
         listOf(
             listOf(
@@ -144,7 +144,7 @@ val KB_TR_QUE_MAIN =
                     bottomLeft = KeyC("|", color = MUTED),
                     left = KeyC("l"),
                 ),
-                SPACEBAR_ALL_MORE_SYMBOLS,
+                SPACEBAR_ALL_SYMBOLS_ARTI,
             ),
             listOf(
                 BACKSPACE_KEY_ITEM,
@@ -182,12 +182,12 @@ val KB_TR_QUE_MAIN =
                     bottomLeft = KeyC("›", color = MUTED),
                     left = KeyC("@", color = MUTED),
                 ),
-                RETURN_KEY_FOO,
+                RETURN_KEY_ARTI,
             ),
         ),
     )
 
-val KB_TR_QUE_SHIFTED =
+val KB_TR_ARTI_SHIFTED =
     KeyboardC(
         listOf(
             listOf(
@@ -268,7 +268,7 @@ val KB_TR_QUE_SHIFTED =
                     bottomLeft = KeyC("|", color = MUTED),
                     left = KeyC("L"),
                 ),
-                SPACEBAR_ALL_MORE_SYMBOLS.copy(
+                SPACEBAR_ALL_SYMBOLS_ARTI.copy(
                     top =
                         KeyC(
                             display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
@@ -314,12 +314,12 @@ val KB_TR_QUE_SHIFTED =
                     bottomLeft = KeyC("›", color = MUTED),
                     left = KeyC("@", color = MUTED),
                 ),
-                RETURN_KEY_FOO,
+                RETURN_KEY_ARTI,
             ),
         ),
     )
 
-val KB_TR_QUE_NUMERIC =
+val KB_TR_ARTI_NUMERIC =
     KeyboardC(
         listOf(
             listOf(
@@ -378,7 +378,7 @@ val KB_TR_QUE_NUMERIC =
                     bottom = KeyC(".", color = MUTED),
                     bottomLeft = KeyC("|", color = MUTED),
                 ),
-                SPACEBAR_ALL_MORE_SYMBOLS,
+                SPACEBAR_ALL_SYMBOLS_ARTI,
             ),
             listOf(
                 BACKSPACE_KEY_ITEM,
@@ -407,19 +407,19 @@ val KB_TR_QUE_NUMERIC =
                     bottomLeft = KeyC("›", color = MUTED),
                     left = KeyC("@", color = MUTED),
                 ),
-                RETURN_KEY_FOO,
+                RETURN_KEY_ARTI,
             ),
         ),
     )
 
-val KB_TR_QUE: KeyboardDefinition =
+val KB_TR_ARTI: KeyboardDefinition =
     KeyboardDefinition(
-        title = "türkçe que",
+        title = "türkçe artı çok",
         modes =
             KeyboardDefinitionModes(
-                main = KB_TR_QUE_MAIN,
-                shifted = KB_TR_QUE_SHIFTED,
-                numeric = KB_TR_QUE_NUMERIC,
+                main = KB_TR_ARTI_MAIN,
+                shifted = KB_TR_ARTI_SHIFTED,
+                numeric = KB_TR_ARTI_NUMERIC,
             ),
         settings =
             KeyboardDefinitionSettings(

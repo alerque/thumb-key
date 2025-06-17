@@ -175,7 +175,7 @@ import com.dessalines.thumbkey.keyboards.KB_SV_THUMBKEY
 import com.dessalines.thumbkey.keyboards.KB_T9
 import com.dessalines.thumbkey.keyboards.KB_TOK_SITELEN_THUMBKEY_EMOJI
 import com.dessalines.thumbkey.keyboards.KB_TOK_THUMBKEY
-import com.dessalines.thumbkey.keyboards.KB_TR_QUE
+import com.dessalines.thumbkey.keyboards.KB_TR_ARTI
 import com.dessalines.thumbkey.keyboards.KB_TR_THUMBKEY
 import com.dessalines.thumbkey.keyboards.KB_TR_TYPESPLIT
 import com.dessalines.thumbkey.keyboards.KB_UK_BY_RU_THUMBKEY
@@ -234,7 +234,7 @@ enum class KeyboardLayout(
     PLTypeSplitV2(KB_PL_TYPESPLIT_V2),
     ENTwoHands(KB_EN_TWO_HANDS),
     ENThumbKeyProgrammingWide(KB_EN_THUMBKEY_PROGRAMMING_WIDE),
-    TRQue(KB_TR_QUE),
+    TRArti(KB_TR_ARTI),
     HUThumbKey(KB_HU_THUMBKEY),
     ESEOThumbKey(KB_ES_EO_THUMBKEY),
     ITMessagEase(KB_IT_MESSAGEASE),
