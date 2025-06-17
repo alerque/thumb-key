@@ -37,22 +37,25 @@ val SPACEBAR_ALL_MORE_SYMBOLS =
     SPACEBAR_ALL_SYMBOLS.copy(
         swipeType = SwipeNWay.EIGHT_WAY,
         topLeft =
-            KeyC(
-                "“", color = MUTED),
+            KeyC("“", color = MUTED),
         topRight = KeyC("‘", color = MUTED),
-        top = KeyC(
-            display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
-            action = KeyAction.ToggleShiftMode(true),
-            size = LARGE,
-            color = PRIMARY,
-        ),
-        bottom = KeyC(
-            display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropDown),
-            action = KeyAction.ToggleShiftMode(false),
-            size = LARGE,
-            color = PRIMARY,
-        ),
-        bottomLeft = KeyC("”",
+        top =
+            KeyC(
+                display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
+                action = KeyAction.ToggleShiftMode(true),
+                size = LARGE,
+                color = PRIMARY,
+            ),
+        bottom =
+            KeyC(
+                display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropDown),
+                action = KeyAction.ToggleShiftMode(false),
+                size = LARGE,
+                color = PRIMARY,
+            ),
+        bottomLeft =
+            KeyC(
+                "”",
                 color = MUTED,
             ),
         bottomRight = KeyC("’", color = MUTED),
@@ -66,8 +69,10 @@ val KB_TR_QUE_MAIN =
             listOf(
                 EMOJI_KEY_ITEM,
                 KeyItemC(
-                    center = KeyC("s", size = LARGE),
                     swipeType = SwipeNWay.EIGHT_WAY,
+                    center = KeyC("s", size = LARGE),
+                    left = KeyC("₸", color = MUTED),
+                    bottomLeft = KeyC("€", color = MUTED),
                     bottom = KeyC("ş"),
                     bottomRight = KeyC("w"),
                     top = KeyC("~", color = MUTED),
@@ -156,6 +161,7 @@ val KB_TR_QUE_MAIN =
                     top = KeyC("f"),
                     right = KeyC("z"),
                     left = KeyC("?", color = MUTED),
+                    bottomLeft = KeyC("‽", color = MUTED),
                     topRight = KeyC("'", color = MUTED),
                 ),
                 KeyItemC(
@@ -180,6 +186,8 @@ val KB_TR_QUE_SHIFTED =
                 KeyItemC(
                     center = KeyC("S", size = LARGE),
                     swipeType = SwipeNWay.EIGHT_WAY,
+                    left = KeyC("₸", color = MUTED),
+                    bottomLeft = KeyC("€", color = MUTED),
                     bottom = KeyC("Ş"),
                     bottomRight = KeyC("W"),
                     top = KeyC("~", color = MUTED),
@@ -268,6 +276,7 @@ val KB_TR_QUE_SHIFTED =
                     top = KeyC("F"),
                     right = KeyC("Z"),
                     left = KeyC("?", color = MUTED),
+                    bottomLeft = KeyC("‽", color = MUTED),
                     topRight = KeyC("'", color = MUTED),
                 ),
                 KeyItemC(
