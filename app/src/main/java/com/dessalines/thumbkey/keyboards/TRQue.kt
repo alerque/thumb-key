@@ -289,285 +289,76 @@ val KB_TR_QUE_NUMERIC =
         listOf(
             listOf(
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("0"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
+                    center = KeyC("0", size = LARGE),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("1"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("/"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("`"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP to
-                                KeyC(
-                                    action = KeyAction.CommitText("~"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("1", size = LARGE),
+                    topRight = KeyC("/", color = MUTED),
+                    topLeft = KeyC("`", color = MUTED),
+                    top = KeyC("~", color = MUTED),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("2"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("-"),
-                                ),
-                            SwipeDirection.TOP to
-                                KeyC(
-                                    action = KeyAction.CommitText("^"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("×"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("\\"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("_"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("2", size = LARGE),
+                    right = KeyC("-"),
+                    top = KeyC("^", color = MUTED),
+                    topRight = KeyC("×", color = MUTED),
+                    topLeft = KeyC("\\", color = MUTED),
+                    bottomLeft = KeyC("_", color = MUTED),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("3"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP to
-                                KeyC(
-                                    action = KeyAction.CommitText("*"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("="),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("+"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("÷"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("3", size = LARGE),
+                    top = KeyC("*", color = MUTED),
+                    topLeft = KeyC("=", color = MUTED),
+                    topRight = KeyC("+", color = MUTED),
+                    right = KeyC("÷", color = MUTED),
                 ),
                 ABC_KEY_ITEM,
             ),
             listOf(
                 SPACEBAR_ALL_DIRECTIONS,
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("4"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("{"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP to
-                                KeyC(
-                                    action = KeyAction.CommitText("$"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("₺"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM to
-                                KeyC(
-                                    action = KeyAction.CommitText("&"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("["),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("("),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("%"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("4", size = LARGE),
+                    topLeft = KeyC("{", color = MUTED),
+                    top = KeyC("$", color = MUTED),
+                    topRight = KeyC("₺", color = MUTED),
+                    bottom = KeyC("&", color = MUTED),
+                    bottomLeft = KeyC("[", color = MUTED),
+                    left = KeyC("(", color = MUTED),
+                    bottomRight = KeyC("%", color = MUTED),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("5"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
+                    center = KeyC("5", size = LARGE),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("6"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP to
-                                KeyC(
-                                    action = KeyAction.CommitText(","),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("|"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText(")"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("}"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM to
-                                KeyC(
-                                    action = KeyAction.CommitText("."),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.BOTTOM_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("]"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("6", size = LARGE),
+                    top = KeyC(",", color = MUTED),
+                    bottomLeft = KeyC("|", color = MUTED),
+                    right = KeyC(")", color = MUTED),
+                    topRight = KeyC("}", color = MUTED),
+                    bottom = KeyC(".", color = MUTED),
+                    bottomRight = KeyC("]", color = MUTED),
                 ),
                 SPACEBAR_ALL_MORE_SYMBOLS,
             ),
             listOf(
                 BACKSPACE_KEY_ITEM,
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("7"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP_LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("\""),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("<"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("!"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("7", size = LARGE),
+                    topLeft = KeyC("\"", color = MUTED),
+                    left = KeyC("<", color = MUTED),
+                    right = KeyC("!", color = MUTED),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("8"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("'"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("?"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("8", size = LARGE),
+                    topRight = KeyC("'", color = MUTED),
+                    left = KeyC("?", color = MUTED),
                 ),
                 KeyItemC(
-                    center =
-                        KeyC(
-                            action = KeyAction.CommitText("9"),
-                            size = FontSizeVariant.LARGE,
-                            color = ColorVariant.PRIMARY,
-                        ),
-                    swipes =
-                        mapOf(
-                            SwipeDirection.TOP_RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText("°"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.RIGHT to
-                                KeyC(
-                                    action = KeyAction.CommitText(">"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.LEFT to
-                                KeyC(
-                                    action = KeyAction.CommitText("@"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                            SwipeDirection.TOP to
-                                KeyC(
-                                    action = KeyAction.CommitText("#"),
-                                    color = ColorVariant.MUTED,
-                                ),
-                        ),
+                    center = KeyC("9", size = LARGE),
+                    topRight = KeyC("°", color = MUTED),
+                    right = KeyC(">", color = MUTED),
+                    left = KeyC("@", color = MUTED),
+                    top = KeyC("#", color = MUTED),
                 ),
                 RETURN_KEY_FOO,
             ),
