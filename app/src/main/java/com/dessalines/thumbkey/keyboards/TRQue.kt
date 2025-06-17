@@ -2,6 +2,7 @@
 
 package com.dessalines.thumbkey.keyboards
 
+import android.view.KeyEvent
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.*
 import androidx.compose.material.icons.outlined.*
@@ -141,7 +142,7 @@ val TR_QUE_MAIN =
                 BACKSPACE_KEY_ITEM,
                 KeyItemC(
                     center = KeyC("t", size = FontSizeVariant.LARGE),
-                    swipeType = SwipeNWay.FIVE_WAY,
+                    swipeType = SwipeNWay.EIGHT_WAY,
                     top = KeyC("ç"),
                     topRight = KeyC("c"),
                     topLeft = KeyC("\"", color = ColorVariant.MUTED),
@@ -150,7 +151,7 @@ val TR_QUE_MAIN =
                 ),
                 KeyItemC(
                     center = KeyC("i", size = FontSizeVariant.LARGE),
-                    swipeType = SwipeNWay.FIVE_WAY,
+                    swipeType = SwipeNWay.EIGHT_WAY,
                     topLeft = KeyC("ı"),
                     top = KeyC("f"),
                     right = KeyC("z"),
@@ -159,7 +160,7 @@ val TR_QUE_MAIN =
                 ),
                 KeyItemC(
                     center = KeyC("e", size = FontSizeVariant.LARGE),
-                    swipeType = SwipeNWay.FIVE_WAY,
+                    swipeType = SwipeNWay.EIGHT_WAY,
                     topLeft = KeyC("d"),
                     topRight = KeyC("°", color = ColorVariant.MUTED),
                     right = KeyC(">", color = ColorVariant.MUTED),
@@ -253,7 +254,7 @@ val TR_QUE_SHIFTED =
                 BACKSPACE_KEY_ITEM,
                 KeyItemC(
                     center = KeyC("T", size = FontSizeVariant.LARGE),
-                    swipeType = SwipeNWay.FIVE_WAY,
+                    swipeType = SwipeNWay.EIGHT_WAY,
                     top = KeyC("Ç"),
                     topRight = KeyC("C"),
                     topLeft = KeyC("\"", color = ColorVariant.MUTED),
@@ -262,7 +263,7 @@ val TR_QUE_SHIFTED =
                 ),
                 KeyItemC(
                     center = KeyC("İ", size = FontSizeVariant.LARGE),
-                    swipeType = SwipeNWay.FIVE_WAY,
+                    swipeType = SwipeNWay.EIGHT_WAY,
                     topLeft = KeyC("I"),
                     top = KeyC("F"),
                     right = KeyC("Z"),
@@ -271,7 +272,7 @@ val TR_QUE_SHIFTED =
                 ),
                 KeyItemC(
                     center = KeyC("E", size = FontSizeVariant.LARGE),
-                    swipeType = SwipeNWay.FIVE_WAY,
+                    swipeType = SwipeNWay.EIGHT_WAY,
                     topLeft = KeyC("D"),
                     topRight = KeyC("°", color = ColorVariant.MUTED),
                     right = KeyC(">", color = ColorVariant.MUTED),
