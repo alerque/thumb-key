@@ -63,6 +63,12 @@ val SPACEBAR_ALL_SYMBOLS_ARTI =
         left = KeyC("–", color = MUTED),
     )
 
+val SPACEBAR_ALL_DIRECTIONS_ARTI =
+    SPACEBAR_ALL_DIRECTIONS.copy(
+        swipeType = EIGHT_WAY,
+        topRight = KeyC(" ", color = MUTED, display = KeyDisplay.TextDisplay("␣")),
+    )
+
 val KB_TR_ARTI_MAIN =
     KeyboardC(
         listOf(
@@ -107,7 +113,7 @@ val KB_TR_ARTI_MAIN =
                 NUMERIC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_DIRECTIONS,
+                SPACEBAR_ALL_DIRECTIONS_ARTI,
                 KeyItemC(
                     swipeType = EIGHT_WAY,
                     center = KeyC("n", size = LARGE),
@@ -231,7 +237,7 @@ val KB_TR_ARTI_SHIFTED =
                 NUMERIC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_DIRECTIONS,
+                SPACEBAR_ALL_DIRECTIONS_ARTI,
                 KeyItemC(
                     swipeType = EIGHT_WAY,
                     center = KeyC("N", size = LARGE),
@@ -274,7 +280,7 @@ val KB_TR_ARTI_SHIFTED =
                             display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
                             action = ShiftAndCapsLock(true),
                             size = LARGE,
-                            color = MUTED,
+                            color = SECONDARY,
                         ),
                 ),
             ),
@@ -355,7 +361,7 @@ val KB_TR_ARTI_NUMERIC =
                 ABC_KEY_ITEM,
             ),
             listOf(
-                SPACEBAR_ALL_DIRECTIONS,
+                SPACEBAR_ALL_DIRECTIONS_ARTI,
                 KeyItemC(
                     center = KeyC("4", size = LARGE),
                     topLeft = KeyC("{", color = MUTED),
