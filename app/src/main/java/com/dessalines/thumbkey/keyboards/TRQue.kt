@@ -288,8 +288,8 @@ val KB_TR_QUE_SHIFTED =
                 ),
                 KeyItemC(
                     swipeType = EIGHT_WAY,
-                    center = KeyC("İ", size = LARGE),
-                    topLeft = KeyC("I"),
+                    center = KeyC("I", size = LARGE),
+                    topLeft = KeyC("İ"),
                     top = KeyC("F"),
                     topRight = KeyC("'", color = MUTED),
                     right = KeyC("Z"),
