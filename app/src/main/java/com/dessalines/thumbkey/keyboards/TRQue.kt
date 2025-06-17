@@ -277,10 +277,10 @@ val KB_TR_ARTI_SHIFTED =
                 SPACEBAR_ALL_SYMBOLS_ARTI.copy(
                     top =
                         KeyC(
-                            display = KeyDisplay.IconDisplay(Icons.Outlined.ArrowDropUp),
+                            display = KeyDisplay.IconDisplay(Icons.Outlined.KeyboardCapslock),
+                            capsModeDisplay = KeyDisplay.TextDisplay(""),
                             action = ShiftAndCapsLock(true),
                             size = LARGE,
-                            color = SECONDARY,
                         ),
                 ),
             ),
