@@ -66,6 +66,13 @@ class IMEService :
         handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
     }
 
+    override fun onCreateInputView(): View {
+        window?.window?.apply {
+            setDecorFitsSystemWindows(false)
+        }
+        return setupView()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
